@@ -38,6 +38,7 @@ export const createAnecdote = (content) => {
 }
 
 const reducer = (state = initialState, action) => {
+  console.log("ACTION: ", action)
   switch (action.type) {
     case "VOTE":
       const id = action.data.id
