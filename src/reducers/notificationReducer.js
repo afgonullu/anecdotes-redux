@@ -3,18 +3,31 @@ const reducer = (state = "", action) => {
 
   switch (action.type) {
     case "A":
-      console.log(action.data.message)
       return action.data.message
+    case "CLEAR":
+      return ""
     default:
       return state
   }
 }
 
-export const changeNotification = (message) => {
-  console.log(message)
-  return {
-    type: "A",
-    data: { message },
+const clearNotification = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "CLEAR",
+    })
+  }
+}
+
+export const changeNotification = (message, timeout) => {
+  return (dispatch) => {
+    dispatch({
+      type: "A",
+      data: { message },
+    })
+    setTimeout(() => {
+      dispatch(clearNotification())
+    }, timeout * 1000)
   }
 }
 
