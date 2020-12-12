@@ -11,6 +11,15 @@ const reducer = (state = "", action) => {
   }
 }
 
+let timeOut
+
+const fireNewNotification = (dispatch, t) => {
+  clearTimeout(timeOut)
+  timeOut = setTimeout(() => {
+    dispatch(clearNotification())
+  }, t * 1000)
+}
+
 const clearNotification = () => {
   return (dispatch) => {
     dispatch({
@@ -25,9 +34,7 @@ export const changeNotification = (message, timeout) => {
       type: "A",
       data: { message },
     })
-    setTimeout(() => {
-      dispatch(clearNotification())
-    }, timeout * 1000)
+    fireNewNotification(dispatch, timeout)
   }
 }
 
