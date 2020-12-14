@@ -4,6 +4,7 @@ import { createAnecdote } from "../reducers/anecdoteReducer"
 import { changeNotification } from "../reducers/notificationReducer"
 
 const AnecdoteForm = (props) => {
+<<<<<<< HEAD
   const addAnecdote = async (event) => {
     event.preventDefault()
     const content = event.target.content.value
@@ -11,6 +12,19 @@ const AnecdoteForm = (props) => {
 
     props.createAnecdote(content)
     props.changeNotification(`you created a new Note: ${content}`, 5)
+=======
+  const dispatch = useDispatch()
+
+  const addAnecdote = (event) => {
+    event.preventDefault()
+    const content = event.target.content.value
+    event.target.content.value = ""
+    dispatch(createAnecdote(content))
+    dispatch(changeNotification(`you created a new Note: ${content}`))
+    setTimeout(() => {
+      dispatch(changeNotification(null))
+    }, 5000)
+>>>>>>> parent of d052a36... build: use server, async, redux-thunk action creators
   }
 
   return (

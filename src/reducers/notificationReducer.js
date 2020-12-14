@@ -3,14 +3,14 @@ const reducer = (state = "", action) => {
 
   switch (action.type) {
     case "A":
+      console.log(action.data.message)
       return action.data.message
-    case "CLEAR":
-      return ""
     default:
       return state
   }
 }
 
+<<<<<<< HEAD
 let timeOut
 
 const fireNewNotification = (dispatch, t) => {
@@ -35,6 +35,13 @@ export const changeNotification = (message, timeout) => {
       data: { message },
     })
     fireNewNotification(dispatch, timeout)
+=======
+export const changeNotification = (message) => {
+  console.log(message)
+  return {
+    type: "A",
+    data: { message },
+>>>>>>> parent of d052a36... build: use server, async, redux-thunk action creators
   }
 }
 
